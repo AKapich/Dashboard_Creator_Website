@@ -1,0 +1,171 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0e1117;
+    color: #e0e0e0;
+    display: flex;
+    height: 100vh;
+}
+
+/* Container for Sidebar and Main Content */
+.container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap; /* Allows flex items to wrap on smaller screens */
+}
+
+/* Sidebar for controls */
+.sidebar {
+    width: 33%; /* Default sidebar width */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #1a1a1a;
+    overflow-y: auto;
+}
+
+.sidebar h1 {
+    color: #ffffff;
+    margin-top: 0;
+}
+
+.sidebar label {
+    color: #e0e0e0;
+    font-size: 16px;
+    display: block;
+    margin: 10px 0;
+}
+
+.sidebar select, .sidebar input[type="range"] {
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Button Styling */
+#generate-plot {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#generate-plot:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+#generate-plot:focus {
+    outline: none;
+}
+
+/* Main Content Area */
+.main-content {
+    width: 67%; /* Default main content width */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #0e1117;
+    overflow-y: auto;
+}
+
+/* Grid of panes */
+.pane-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+/* Individual Pane */
+.pane {
+    position: relative;
+    width: 100%;
+    padding-top: 61.54%; /* Aspect ratio padding for 13:8 */
+    border: 2px solid #1a1a1a;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pane:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.pane img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Plot Modal */
+#plot-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+#plot-modal label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#plot-select, #generate-plot {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#plot-display {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Full width on small screens */
+        height: auto;
+        padding: 10px;
+    }
+
+    .main-content {
+        width: 100%; /* Full width on small screens */
+        padding: 10px;
+    }
+
+    .pane-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .pane-grid {
+        grid-template-columns: 1fr; /* 1 column on extra small screens */
+    }
+
+    .sidebar, .main-content {
+        padding: 5px; /* Reduce padding on very small screens */
+    }
+}

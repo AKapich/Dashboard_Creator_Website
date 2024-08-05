@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Image Grid</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app/style.css') }}">
+    <script src="{{ url_for('static', filename='app/script.js') }}" defer></script>
+</head> 
+
+<body>
+    <div class="container">
+        <!-- Sidebar for controls -->
+        <div class="sidebar">
+            <h1>Euro 2024 Dashboard</h1>
+            
+            <!-- Dropdown for selecting the database -->
+            <label for="match-select">Select match:</label>
+            <select id="match-select">
+                {% for key, value in match_dict.items() %}
+                    <option value="{{ value }}">{{ key }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Slider to choose number of rows -->
+            <label for="row-slider">Choose number of rows:</label>
+            <input type="range" id="row-slider" min="2" max="5" value="2">
+            <span id="row-count">2</span> rows
+
+            <!-- Modal for selecting plot type -->
+            <div id="plot-modal" style="display:none;">
+                <label for="plot-select">Choose a plot type:</label>
+                <select id="plot-select">
+                    {% for option in side_charts %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+                <button id="generate-plot">Add Plot</button>
+            </div>
+        </div>
+
+        <!-- Main content area for images -->
+        <div class="main-content">
+            <!-- Grid of panes -->
+            <div class="pane-grid" id="pane-grid">
+                <!-- Dynamic grid elements will be inserted here by JavaScript -->
+            </div>
+
+            <!-- Area to display the generated plot -->
+            <div id="plot-display"></div>
+        </div>
+    </div>
+</body>
+</html>
