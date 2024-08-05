@@ -756,5 +756,6 @@ viz_dict = {
         'xT Heatmap': xT_heatmap,
         'Passes to Final 3rd': final_3rd_passes,
         'Passes to Penalty Area': penalty_passes,
-        'xT Momentum': xT_momentum
+        'xT Momentum': xT_momentum,
+        'None': lambda *args, **kwargs: None
 }

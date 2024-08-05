@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const rowCountSpan = document.getElementById('row-count');
     const plotModal = document.getElementById('plot-modal');
     const matchSelect = document.getElementById('match-select');
+    const plotSelect = document.getElementById('plot-select');
     let activePane = null;
 
     function createGrid(rows) {
@@ -12,17 +13,38 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 1; i <= totalPanes; i++) {
             const pane = document.createElement('div');
             pane.className = 'pane';
+            const column = (i - 1) % 3 + 1; // Determine the column (1, 2, or 3)
             pane.setAttribute('data-id', `pane${i}`);
+            pane.setAttribute('data-column', column); // Set the column attribute
             pane.addEventListener('click', function() {
                 activePane = this;
+                showPlotOptions(column); // Show options based on the column
                 plotModal.style.display = 'block';
             });
             paneGrid.appendChild(pane);
         }
     }
 
+    function showPlotOptions(column) {
+        plotSelect.innerHTML = ''; // Clear existing options
+        let options = [];
+
+        if (column === 2) {
+            options = middleCharts;
+        } else {
+            options = sideCharts;
+        }
+
+        options.forEach(option => {
+            const opt = document.createElement('option');
+            opt.value = option;
+            opt.textContent = option;
+            plotSelect.appendChild(opt);
+        });
+    }
+
     document.getElementById('generate-plot').onclick = function() {
-        let plotType = document.getElementById('plot-select').value;
+        let plotType = plotSelect.value;
         let matchId = matchSelect.value; // Get the selected match ID
         fetch('/generate_plot', {
             method: 'POST',
@@ -44,13 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const rows = this.value;
         rowCountSpan.textContent = rows;
         createGrid(rows);
-    });
-
-    // Event listener for match selection change
-    matchSelect.addEventListener('change', function() {
-        let matchId = this.value;
-        console.log('Selected match ID:', matchId);
-        // Optionally, update the grid or perform other actions based on the selected match ID
     });
 
     // Initialize grid with default value (2 rows)

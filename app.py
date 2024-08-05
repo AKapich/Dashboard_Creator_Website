@@ -3,6 +3,9 @@ from statsbombpy import sb
 import matplotlib.pyplot as plt
 import io
 import base64
+import threading
+import matplotlib
+matplotlib.use('Agg')
 
 from get_viz import viz_dict
 
@@ -35,37 +38,39 @@ def index():
 
 @app.route('/generate_plot', methods=['POST'])
 def generate_plot():
-    try:
-        data = request.json
-        plot_type = data.get('plot_type')
+    with threading.Lock():
+        try:
+            data = request.json
+            plot_type = data.get('plot_type')
 
-        match_id = data.get('match_id')
-        if not match_id:
-            raise ValueError("No match ID provided")
+            match_id = data.get('match_id')
+            if not match_id:
+                raise ValueError("No match ID provided")
+            
+            match_data = matches[matches['match_id']==int(match_id)].iloc[0]
+            home_team = match_data['home_team']
+            away_team = match_data['away_team']
+            
+            img = io.BytesIO()
+            fig, ax = plt.subplots(figsize=(13, 8), tight_layout=True)
+            fig.set_facecolor('#0e1117')
+            ax.patch.set_facecolor('#0e1117')
+            ax.axis('off')
+
+            if plot_type in side_charts:
+                viz_dict[plot_type](match_id=match_id, team=home_team, ax=ax)
+            else:
+                viz_dict[plot_type](match_id=match_id, home_team=home_team, away_team=away_team, ax=ax)
+
+            plt.savefig(img, format='png')
+            img.seek(0)
+            plt.close()
+            img_data = base64.b64encode(img.getvalue()).decode('utf-8')
+            return jsonify({'img_data': img_data})
         
-        # match_data = matches.query('match_id == @match_id').iloc[0]
-        match_data = matches[matches['match_id']==int(match_id)].iloc[0]
-        home_team = match_data['home_team']
-        away_team = match_data['away_team']
-        
-        img = io.BytesIO()
-        fig, ax = plt.subplots(figsize=(13, 8), tight_layout=True)
-        fig.set_facecolor('#0e1117')
-        ax.patch.set_facecolor('#0e1117')
-        ax.axis('off')
-
-        # home_team='Netherlands'
-        viz_dict[plot_type](match_id=match_id, team=home_team, ax=ax)
-
-        plt.savefig(img, format='png')
-        img.seek(0)
-        plt.close()
-        img_data = base64.b64encode(img.getvalue()).decode('utf-8')
-        return jsonify({'img_data': img_data})
-    
-    except Exception as e:
-        print(f"Error occurred: {e}")
-        return jsonify({'error': 'An error occurred while generating the plot'}), 500
+        except Exception as e:
+            print(f"Error occurred: {e}")
+            return jsonify({'error': 'An error occurred while generating the plot'}), 500
 
 
 if __name__ == '__main__':

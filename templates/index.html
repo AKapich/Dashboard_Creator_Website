@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Image Grid</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='app/style.css') }}">
+    <script>
+        // Passing Flask variables to JavaScript
+        const sideCharts = {{ side_charts|tojson }};
+        const middleCharts = {{ middle_charts|tojson }};
+    </script>
     <script src="{{ url_for('static', filename='app/script.js') }}" defer></script>
 </head> 
 
@@ -14,7 +19,7 @@
         <div class="sidebar">
             <h1>Euro 2024 Dashboard</h1>
             
-            <!-- Dropdown for selecting the database -->
+            <!-- Dropdown for selecting the match -->
             <label for="match-select">Select match:</label>
             <select id="match-select">
                 {% for key, value in match_dict.items() %}
@@ -31,9 +36,7 @@
             <div id="plot-modal" style="display:none;">
                 <label for="plot-select">Choose a plot type:</label>
                 <select id="plot-select">
-                    {% for option in side_charts %}
-                        <option value="{{ option }}">{{ option }}</option>
-                    {% endfor %}
+                    <!-- Options will be dynamically populated by JavaScript -->
                 </select>
                 <button id="generate-plot">Add Plot</button>
             </div>
