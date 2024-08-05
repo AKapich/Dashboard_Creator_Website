@@ -30,11 +30,14 @@
                     <option value="{{ value }}">{{ key }}</option>
                 {% endfor %}
             </select>
-
+            <br><br>
             <!-- Slider to choose number of rows -->
+            <div id="monospace-text">Choose amount of rows:</div> 
             <label for="row-slider"></label>
             <input type="range" id="row-slider" min="2" max="5" value="2">
-            <span id="row-count">2</span> rows
+            <span id="row-count">2</span>
+            <br><br>
+            <button id="save-dashboard">Save Dashboard</button>
 
             <!-- Modal for selecting plot type -->
             <div id="plot-modal" style="display:none;">
@@ -44,8 +47,8 @@
                 </select>
                 <button id="generate-plot">Add Plot</button>
             </div>
-
-            <!-- <img src="{{ url_for('static', filename='images/sb_icon.png') }}" alt="StatsBomb Icon" style="width:100%; margin-bottom:20px;"> -->
+            <br><br>
+            <img src="{{ url_for('static', filename='images/sb_icon.png') }}" alt="StatsBomb Icon" style="width:100%; margin-bottom:20px;">
         </div>
 
         <!-- Main content area for images -->

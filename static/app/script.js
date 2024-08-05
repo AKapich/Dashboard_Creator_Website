@@ -87,4 +87,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize grid with default value (2 rows)
     createGrid(rowSlider.value);
+
+    
+    document.getElementById('save-dashboard').addEventListener('click', function() {
+        let matchId = matchSelect.value;
+        const panes = document.querySelectorAll('.pane');
+        let dashboardData = [];
+    
+        panes.forEach(pane => {
+            const paneId = pane.getAttribute('data-id');
+            const plotType = plotTypes[paneId] || 'None'; // Default to 'None' if no plot type
+            const column = pane.getAttribute('data-column');
+            dashboardData.push({ paneId, plotType, column });
+        });
+    
+        fetch('/save_dashboard', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ dashboard: dashboardData, 'match_id': matchId})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Dashboard saved successfully!');
+            } else {
+                alert('Failed to save the dashboard.');
+            }
+        });
+    });
+    
 });

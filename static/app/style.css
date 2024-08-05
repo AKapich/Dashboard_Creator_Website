@@ -45,7 +45,7 @@ body {
 
 /* Button Styling */
 #generate-plot {
-    background-color: #007bff;
+    background-color: #e20c16;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -56,7 +56,7 @@ body {
 }
 
 #generate-plot:hover {
-    background-color: #0056b3;
+    background-color: #e20c16;
     transform: scale(1.05);
 }
 
@@ -155,6 +155,109 @@ body {
 
 .sidebar-header h1 {
     margin: 0;
+}
+
+#save-dashboard {
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #0e1117; /* Background color */
+    color: #ffffff; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.2s, background-color 0.2s; /* Smooth transition for hover effects */
+}
+
+#save-dashboard:hover {
+    transform: scale(1.1); /* Enlarge button on hover */
+    background-color: #1a232e; /* Slightly lighter color on hover */
+}
+
+#match-select {
+    padding: 10px 20px; /* Same padding as the button */
+    background-color: #0e1117; /* Same background color as the button */
+    color: #ffffff; /* Same text color as the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Same rounded corners as the button */
+    font-size: 16px; /* Same font size as the button */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.2s; /* Smooth transition for hover effects */
+}
+
+/* Style the select element's option */
+#match-select option {
+    background-color: #0e1117; /* Match the background color */
+    color: #ffffff; /* Match the text color */
+}
+
+/* Add a hover effect for the select dropdown */
+#match-select:hover {
+    background-color: #1a232e; /* Slightly lighter color on hover */
+}
+
+/* General styling for the slider container */
+#row-slider-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the slider input */
+#row-slider {
+    -webkit-appearance: none; /* Remove default appearance in WebKit browsers */
+    width: 100px; /* Adjust width as needed */
+    height: 6px; /* Slider height */
+    background: #0e1117; /* Background color of the slider track */
+    border-radius: 5px; /* Rounded corners for the slider track */
+    outline: none; /* Remove outline */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-right: 10px; /* Space between slider and label */
+    transition: background-color 0.2s; /* Smooth transition for hover effects */
+}
+
+/* Style for the slider thumb */
+#row-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default appearance */
+    width: 16px; /* Thumb width */
+    height: 16px; /* Thumb height */
+    background: #ffffff; /* Thumb color */
+    border-radius: 50%; /* Rounded thumb */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.2s; /* Smooth transition for hover effects */
+}
+
+#row-slider::-moz-range-thumb {
+    width: 16px; /* Thumb width */
+    height: 16px; /* Thumb height */
+    background: #ffffff; /* Thumb color */
+    border-radius: 50%; /* Rounded thumb */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.2s; /* Smooth transition for hover effects */
+}
+
+#row-slider::-ms-thumb {
+    width: 16px; /* Thumb width */
+    height: 16px; /* Thumb height */
+    background: #ffffff; /* Thumb color */
+    border-radius: 50%; /* Rounded thumb */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.2s; /* Smooth transition for hover effects */
+}
+
+/* Style for the span element displaying the row count */
+#row-count {
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    font-size: 16px; /* Font size */
+    color: #ffffff; /* Text color */
+    margin-right: 5px; /* Space between number and label */
+}
+
+#monospace-text{
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    font-size: 16px; /* Font size */
+    color: #ffffff; /* Text color */
+    margin-right: 5px; /* Space between number and label */
 }
 
 /* Responsive Styles */

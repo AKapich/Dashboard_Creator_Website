@@ -1,0 +1,32 @@
+[
+    {
+        "paneId": "pane1",
+        "plotType": "Pass Heatmap",
+        "column": "1"
+    },
+    {
+        "paneId": "pane2",
+        "plotType": "None",
+        "column": "2"
+    },
+    {
+        "paneId": "pane3",
+        "plotType": "None",
+        "column": "3"
+    },
+    {
+        "paneId": "pane4",
+        "plotType": "None",
+        "column": "1"
+    },
+    {
+        "paneId": "pane5",
+        "plotType": "None",
+        "column": "2"
+    },
+    {
+        "paneId": "pane6",
+        "plotType": "None",
+        "column": "3"
+    }
+]
