@@ -142,6 +142,21 @@ body {
     text-align: center;
 }
 
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.sidebar-header img {
+    width: 50%;
+}
+
+.sidebar-header h1 {
+    margin: 0;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .sidebar {

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const matchSelect = document.getElementById('match-select');
     const plotSelect = document.getElementById('plot-select');
     let activePane = null;
+    let plotTypes = {}; // Object to store plot types for each pane
 
     function createGrid(rows) {
         paneGrid.innerHTML = ''; // Clear existing panes
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 plotModal.style.display = 'block';
             });
             paneGrid.appendChild(pane);
+            plotTypes[`pane${i}`] = null; // Initialize with no plot type
         }
     }
 
@@ -43,29 +45,44 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function clearPlots() {
+        const panes = document.querySelectorAll('.pane');
+        panes.forEach(pane => {
+            pane.innerHTML = ''; // Clear the content of each pane
+        });
+    }
+
     document.getElementById('generate-plot').onclick = function() {
-        let plotType = plotSelect.value;
-        let matchId = matchSelect.value; // Get the selected match ID
-        fetch('/generate_plot', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 'plot_type': plotType, 'match_id': matchId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (activePane) {
+        if (activePane) {
+            let plotType = plotSelect.value;
+            let paneId = activePane.getAttribute('data-id');
+            plotTypes[paneId] = plotType; // Save the plot type for the active pane
+            let matchId = matchSelect.value; // Get the selected match ID
+            let column = activePane.getAttribute('data-column'); // Get the column number
+
+            fetch('/generate_plot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 'plot_type': plotType, 'match_id': matchId, 'column': column })
+            })
+            .then(response => response.json())
+            .then(data => {
                 activePane.innerHTML = '<img src="data:image/png;base64,' + data.img_data + '" alt="Selected Plot">';
                 plotModal.style.display = 'none';
-            }
-        });
+            });
+        }
     };
 
     rowSlider.addEventListener('input', function() {
         const rows = this.value;
         rowCountSpan.textContent = rows;
         createGrid(rows);
+    });
+
+    matchSelect.addEventListener('change', function() {
+        clearPlots(); // Clear all plots when the match changes
     });
 
     // Initialize grid with default value (2 rows)

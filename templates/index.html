@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Image Grid</title>
+    <title>Match Dashboard Creation Tool</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='app/style.css') }}">
     <script>
         // Passing Flask variables to JavaScript
@@ -17,10 +17,14 @@
     <div class="container">
         <!-- Sidebar for controls -->
         <div class="sidebar">
-            <h1>Euro 2024 Dashboard</h1>
+            
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='images/EURO2024.png') }}" alt="Euro 2024 logo">
+                <img src="{{ url_for('static', filename='images/dashboard_creator.png') }}" alt="App name">
+            </div>
             
             <!-- Dropdown for selecting the match -->
-            <label for="match-select">Select match:</label>
+            <label for="match-select"></label>
             <select id="match-select">
                 {% for key, value in match_dict.items() %}
                     <option value="{{ value }}">{{ key }}</option>
@@ -28,7 +32,7 @@
             </select>
 
             <!-- Slider to choose number of rows -->
-            <label for="row-slider">Choose number of rows:</label>
+            <label for="row-slider"></label>
             <input type="range" id="row-slider" min="2" max="5" value="2">
             <span id="row-count">2</span> rows
 
@@ -40,10 +44,13 @@
                 </select>
                 <button id="generate-plot">Add Plot</button>
             </div>
+
+            <!-- <img src="{{ url_for('static', filename='images/sb_icon.png') }}" alt="StatsBomb Icon" style="width:100%; margin-bottom:20px;"> -->
         </div>
 
         <!-- Main content area for images -->
         <div class="main-content">
+            
             <!-- Grid of panes -->
             <div class="pane-grid" id="pane-grid">
                 <!-- Dynamic grid elements will be inserted here by JavaScript -->
