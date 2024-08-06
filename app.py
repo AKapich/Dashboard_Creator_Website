@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_file
 from statsbombpy import sb
 import matplotlib.pyplot as plt
 import io
 import base64
 from PIL import Image
-import json
+import os
 import threading
 import matplotlib
 matplotlib.use('Agg')
@@ -136,13 +136,27 @@ def save_dashboard():
                     viz_dict[dashboard[p]['plotType']](match_id, away_team, axes[i][j], inverse=True)
 
         filename = f"{home_team}_vs_{away_team}_dashboard.png"
-        plt.savefig(f'./dashboards/{filename}', format='png')
+        directory = './dashboards/temp'
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        filepath = os.path.join('./dashboards/temp', filename)
+        plt.savefig(filepath, format='png')
+        return jsonify({'success': True, 'filename': filename})
 
-        return jsonify({'success': True})
     
     except Exception as e:
         print(f"Error occurred: {e}")
         return jsonify({'success': False}), 500
+    
+
+@app.route('/download_dashboard/<filename>', methods=['GET'])
+def download_dashboard(filename):
+    filepath = os.path.join('./dashboards/temp', filename)
+    if os.path.exists(filepath):
+        return send_file(filepath, as_attachment=True)
+    else:
+        return "File not found", 404
+
 
 
 if __name__ == '__main__':

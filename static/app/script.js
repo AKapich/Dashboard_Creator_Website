@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let matchId = matchSelect.value;
         const panes = document.querySelectorAll('.pane');
         let dashboardData = [];
-    
+        
         panes.forEach(pane => {
             const paneId = pane.getAttribute('data-id');
             const plotType = plotTypes[paneId] || 'None'; // Default to 'None' if no plot type
@@ -106,16 +106,18 @@ document.addEventListener('DOMContentLoaded', function() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ dashboard: dashboardData, 'match_id': matchId})
+            body: JSON.stringify({ dashboard: dashboardData, 'match_id': matchId })
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Dashboard saved successfully!');
+                // Trigger the download of the dashboard image
+                window.location.href = '/download_dashboard/' + data.filename;
             } else {
                 alert('Failed to save the dashboard.');
             }
         });
     });
+    
     
 });
