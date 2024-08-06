@@ -27,7 +27,7 @@
             <label for="match-select"></label>
             <select id="match-select">
                 {% for key, value in match_dict.items() %}
-                    <option value="{{ value }}">{{ key }}</option>
+                    <option value="{{ value }}" {% if loop.index == 2 %}selected{% endif %}>{{ key }}</option>
                 {% endfor %}
             </select>
             <br><br>
