@@ -25,6 +25,7 @@ body {
     overflow: auto; /* Enable scrolling if content overflows */
     justify-content: center; /* Center align elements */
     align-items: center; /* Center align elements vertically */
+    height: 30vh; /* Adjust height as needed */
 }
 
 .top-bar-row {
@@ -79,33 +80,6 @@ body {
     width: 100%;
 }
 
-/* Sidebar for controls */
-.sidebar {
-    width: 33%; /* Default sidebar width */
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #1a1a1a;
-    overflow-y: auto;
-}
-
-.sidebar h1 {
-    color: #ffffff;
-    margin-top: 0;
-}
-
-.sidebar label {
-    color: #e0e0e0;
-    font-size: 16px;
-    display: block;
-    margin: 10px 0;
-}
-
-.sidebar select, .sidebar input[type="range"] {
-    margin: 5px 0;
-    padding: 10px;
-    font-size: 16px;
-}
-
 /* Button Styling */
 #generate-plot {
     background-color: #e20c16;
@@ -130,7 +104,7 @@ body {
 
 /* Main Content Area */
 .main-content {
-    margin-top: 150px; /* Adjust this value to the height of the top bar */
+    margin-top: 34vh; /* Adjust this value to the height of the top bar */
     padding: 20px;
     box-sizing: border-box;
     background-color: #0e1117;
