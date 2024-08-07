@@ -15,41 +15,38 @@
 
 <body>
     <div class="container">
-        <!-- Sidebar for controls -->
-        <div class="sidebar">
-            
-            <div class="sidebar-header">
+        <div class="top-bar">
+            <div class="top-bar-row">
+                <img src="{{ url_for('static', filename='images/EURO2024.png') }}" alt="Euro 2024 logo" >
                 <img src="{{ url_for('static', filename='images/dashboard_creator.png') }}" alt="App name">
-                <img src="{{ url_for('static', filename='images/EURO2024.png') }}" alt="Euro 2024 logo" style="margin-bottom:30px;">
+                <img src="{{ url_for('static', filename='images/sb_icon.png') }}" alt="StatsBomb Icon">
             </div>
-            
-            <!-- Dropdown for selecting the match -->
-            <label for="match-select"></label>
-            <select id="match-select">
-                {% for key, value in match_dict.items() %}
-                    <option value="{{ value }}" {% if loop.index == 2 %}selected{% endif %}>{{ key }}</option>
-                {% endfor %}
-            </select>
-            <br><br>
-            <!-- Slider to choose number of rows -->
-            <div id="monospace-text">Choose amount of rows:</div> 
-            <label for="row-slider"></label>
-            <input type="range" id="row-slider" min="2" max="5" value="2">
-            <span id="row-count">2</span>
-            <br><br>
-            <button id="save-dashboard">Save Dashboard</button>
-
-            <!-- Modal for selecting plot type -->
-            <div id="plot-modal" style="display:none;">
-                <label for="plot-select">Choose a plot type:</label>
-                <select id="plot-select">
-                    <!-- Options will be dynamically populated by JavaScript -->
+            <div class="top-bar-row">
+                <label for="match-select"></label>
+                <select id="match-select">
+                    {% for key, value in match_dict.items() %}
+                        <option value="{{ value }}" {% if loop.index == 2 %}selected{% endif %}>{{ key }}</option>
+                    {% endfor %}
                 </select>
-                <button id="generate-plot">Add Plot</button>
+                <br><br>
+                <!-- Slider to choose number of rows -->
+                <div id="monospace-text">Choose amount of rows:</div> 
+                <label for="row-slider"></label>
+                <input type="range" id="row-slider" min="2" max="5" value="2">
+                <span id="row-count">2</span>
+                <br><br>
+                <button id="save-dashboard">Save Dashboard</button>
+                <div id="plot-modal" style="display:none;">
+                    <label for="plot-select">Choose a plot type:</label>
+                    <select id="plot-select">
+                        <!-- Options will be dynamically populated by JavaScript -->
+                    </select>
+                    <button id="generate-plot">Add Plot</button>
+                </div>
             </div>
-            <br><br>
-            <img src="{{ url_for('static', filename='images/sb_icon.png') }}" alt="StatsBomb Icon" style="width:100%; margin-top:20px;">
         </div>
+
+
 
         <!-- Main content area for images -->
         <div class="main-content">

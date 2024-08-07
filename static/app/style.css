@@ -2,12 +2,70 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     background-color: #0e1117;
     color: #e0e0e0;
     display: flex;
     height: 100vh;
 }
+
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust as needed */
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.top-bar-row:first-child {
+    justify-content: center; /* Center images in the first row */
+}
+
+.top-bar img {
+    height: 15vh; /* Adjust this value as needed */
+    margin: 0 20px; /* Add space between images (horizontal margin) */
+}
+
+.top-bar select, 
+.top-bar input[type="range"], 
+.top-bar button {
+    margin-right: 15px; /* Add space between elements */
+}
+
+.top-bar select,
+.top-bar input[type="range"] {
+    margin-bottom: 10px; /* Add space below the select and slider */
+}
+
+.top-bar button {
+    margin-left: 10px; /* Add space between buttons */
+}
+
+.top-bar #plot-modal {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.content {
+    padding: 150px 20px; /* Adjust padding to account for the fixed top bar */
+}
+
 
 /* Container for Sidebar and Main Content */
 .container {
@@ -52,6 +110,7 @@ body {
     cursor: pointer;
     padding: 10px 20px;
     font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
     transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -66,11 +125,12 @@ body {
 
 /* Main Content Area */
 .main-content {
-    width: 67%; /* Default main content width */
+    margin-top: 150px; /* Adjust this value to the height of the top bar */
     padding: 20px;
     box-sizing: border-box;
     background-color: #0e1117;
-    overflow-y: auto;
+    flex: 1; /* Allow the main content to grow and fill available space */
+    overflow-y: auto; /* Scroll if content overflows */
 }
 
 /* Individual Pane */
@@ -111,11 +171,12 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background: #1a1a1a;
-    border: 1px solid #333;
+    border: 1px solid #1a1a1a;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #plot-modal label {
@@ -127,6 +188,7 @@ body {
     margin-top: 10px;
     padding: 10px;
     font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #plot-display {
@@ -166,7 +228,7 @@ body {
     background-color: #1a232e; /* Slightly lighter color on hover */
 }
 
-#match-select {
+#match-select, #plot-select {
     padding: 10px 20px; /* Same padding as the button */
     background-color: #0e1117; /* Same background color as the button */
     color: #ffffff; /* Same text color as the button */
@@ -245,12 +307,7 @@ body {
     margin-right: 5px; /* Space between number and label */
 }
 
-#monospace-text{
-    font-family: 'Courier New', Courier, monospace; /* Monospace font */
-    font-size: 16px; /* Font size */
-    color: #ffffff; /* Text color */
-    margin-right: 5px; /* Space between number and label */
-}
+
 
 /* Grid of panes */
 .pane-grid {
@@ -294,13 +351,12 @@ body {
 /* Responsive Styles */
 @media (max-width: 768px) {
     .pane-grid {
-        grid-template-columns: repeat(3, 1fr); /* Maintain 3 columns */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
     }
 }
 
 @media (max-width: 480px) {
     .pane-grid {
-        grid-template-columns: repeat(3, 1fr); /* Maintain 3 columns */
+        grid-template-columns: 1fr; /* 1 column for small screens */
     }
 }
-
