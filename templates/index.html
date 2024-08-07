@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match Dashboard Creation Tool</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='app/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/eurologo.ico') }}"" type="image/x-icon">
     <script>
         // Passing Flask variables to JavaScript
         const sideCharts = {{ side_charts|tojson }};
