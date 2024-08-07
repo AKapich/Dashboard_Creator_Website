@@ -21,6 +21,10 @@ body {
     z-index: 1000;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap; /* Allow wrapping if necessary */
+    overflow: auto; /* Enable scrolling if content overflows */
+    justify-content: center; /* Center align elements */
+    align-items: center; /* Center align elements vertically */
 }
 
 .top-bar-row {
@@ -37,19 +41,21 @@ body {
 }
 
 .top-bar img {
-    height: 15vh; /* Adjust this value as needed */
+    height: auto;
+    max-height: 15vh; /* Adjust this value as needed */
     margin: 0 20px; /* Add space between images (horizontal margin) */
 }
 
 .top-bar select, 
 .top-bar input[type="range"], 
 .top-bar button {
-    margin-right: 15px; /* Add space between elements */
+    margin-right: 10px; /* Adjust space between elements */
+    font-size: 14px; /* Adjust font size */
+    padding: 8px; /* Adjust padding */
 }
 
-.top-bar select,
 .top-bar input[type="range"] {
-    margin-bottom: 10px; /* Add space below the select and slider */
+    width: 150px; /* Adjust width */
 }
 
 .top-bar button {
@@ -71,7 +77,6 @@ body {
 .container {
     display: flex;
     width: 100%;
-    flex-wrap: wrap; /* Allows flex items to wrap on smaller screens */
 }
 
 /* Sidebar for controls */
@@ -313,8 +318,8 @@ body {
 .pane-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
-    gap: 15px;
-    margin: 20px 0;
+    gap: 15px; /* Space between items */
+    margin: 20px 0; /* Margin around the grid */
 }
 
 /* Individual Pane */
@@ -351,12 +356,12 @@ body {
 /* Responsive Styles */
 @media (max-width: 768px) {
     .pane-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 480px) {
     .pane-grid {
-        grid-template-columns: 1fr; /* 1 column for small screens */
+        grid-template-columns: repeat(3, 1fr);
     }
 }
