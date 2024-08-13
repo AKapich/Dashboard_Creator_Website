@@ -9,21 +9,37 @@ document.addEventListener('DOMContentLoaded', function() {
     let plotTypes = {}; // Object to store plot types for each pane
 
     function createGrid(rows) {
+        const currentPanes = {}; // Store existing panes' content
+
+        // Store current pane content and plot types
+        document.querySelectorAll('.pane').forEach(pane => {
+            const paneId = pane.getAttribute('data-id');
+            currentPanes[paneId] = pane.innerHTML;
+            plotTypes[paneId] = plotTypes[paneId] || null;
+        });
+
         paneGrid.innerHTML = ''; // Clear existing panes
         const totalPanes = rows * 3; // 3 columns
         for (let i = 1; i <= totalPanes; i++) {
             const pane = document.createElement('div');
             pane.className = 'pane';
             const column = (i - 1) % 3 + 1; // Determine the column (1, 2, or 3)
-            pane.setAttribute('data-id', `pane${i}`);
+            const paneId = `pane${i}`;
+            pane.setAttribute('data-id', paneId);
             pane.setAttribute('data-column', column); // Set the column attribute
+            
+            // Restore the content if it exists
+            if (currentPanes[paneId]) {
+                pane.innerHTML = currentPanes[paneId];
+            }
+
             pane.addEventListener('click', function() {
                 activePane = this;
                 showPlotOptions(column); // Show options based on the column
                 plotModal.style.display = 'block';
             });
+
             paneGrid.appendChild(pane);
-            plotTypes[`pane${i}`] = null; // Initialize with no plot type
         }
     }
 
@@ -88,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize grid with default value (2 rows)
     createGrid(rowSlider.value);
 
-    
     document.getElementById('save-dashboard').addEventListener('click', function() {
         let matchId = matchSelect.value;
         const panes = document.querySelectorAll('.pane');
@@ -118,6 +133,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    
 });
