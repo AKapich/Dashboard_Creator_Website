@@ -30,7 +30,6 @@
                     {% endfor %}
                 </select>
                 <br><br>
-                <!-- Slider to choose number of rows -->
                 <div id="monospace-text">Choose amount of rows:</div> 
                 <label for="row-slider"></label>
                 <input type="range" id="row-slider" min="2" max="5" value="2">
@@ -40,22 +39,18 @@
                 <div id="plot-modal" style="display:none;">
                     <label for="plot-select">Choose a plot type:</label>
                     <select id="plot-select">
-                        <!-- Options will be dynamically populated by JavaScript -->
+                        <!-- Options dynamically populated by JavaScript -->
                     </select>
                     <button id="generate-plot">Add Plot</button>
                 </div>
             </div>
         </div>
 
-
-
-        <!-- Main content area for images -->
         <div class="main-content">
-            <h2>How to use the dashboard creator?</h2>
-            
-            Within the top-bar menu You can choose the match & Your desired dashboard size. By clicking on the empty
-            panes below, You will be able to choose the plot to be displayed in that particular place on the dashboard.
-            When Your design process is over, download Your dashboard!
+            <h2 id="toggle-header">How to use the dashboard creator? [toggle]</h2>
+            <div id="toggle-content" class="hidden">
+                <p>Within the top-bar menu you can choose the match & your desired dashboard size. By clicking on the empty panes below, you will be able to choose the plot to be displayed in that particular place on the dashboard. When your design process is over, download your dashboard!</p>
+            </div>
             <br><hr>
 
 
@@ -64,9 +59,6 @@
                     <img id="header-image" alt="Dashboard Header">
                 </div>
             </div>
-            <!-- <div id="dashboard-header">
-                <img id="header-image" alt="Dashboard Header" style="width:100%; max-width:600px;">
-            </div> -->
             
             <!-- Grid of panes -->
             <div class="pane-grid" id="pane-grid">
