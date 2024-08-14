@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let activePane = null;
     let plotTypes = {}; // Object to store plot types for each pane
 
+
     function createGrid(rows) {
         const currentPanes = {}; // Store existing panes' content
 
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+
     function showPlotOptions(column) {
         plotSelect.innerHTML = ''; // Clear existing options
         let options = [];
@@ -61,12 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+
     function clearPlots() {
         const panes = document.querySelectorAll('.pane');
         panes.forEach(pane => {
             pane.innerHTML = ''; // Clear the content of each pane
         });
     }
+
 
     document.getElementById('generate-plot').onclick = function() {
         if (activePane) {
@@ -91,14 +95,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    function loadDashboardHeader() {
+        let matchId = matchSelect.value;
+
+        fetch('/create_dashboard_header', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'match_id': matchId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.img_data) {
+                document.getElementById('header-image').src = 'data:image/png;base64,' + data.img_data;
+            }
+        });
+    }
+    window.onload = loadDashboardHeader;
+
+
     rowSlider.addEventListener('input', function() {
         const rows = this.value;
         rowCountSpan.textContent = rows;
         createGrid(rows);
     });
 
+
     matchSelect.addEventListener('change', function() {
         clearPlots(); // Clear all plots when the match changes
+        loadDashboardHeader();
     });
 
     // Initialize grid with default value (2 rows)
@@ -133,4 +159,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
 });

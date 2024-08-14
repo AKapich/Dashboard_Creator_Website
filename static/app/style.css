@@ -74,7 +74,20 @@ body {
 }
 
 
-/* Container for Sidebar and Main Content */
+#dashboard-header {
+    padding-top: 3vh;
+    display: flex;
+    justify-content: center; /* Center horizontally within the header */
+    width: 100%; /* Ensure it takes full width of the container */
+}
+
+#header-image {
+    width: 50%;
+    max-width: 600px;
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Container for top bar and Main Content */
 .container {
     display: flex;
     width: 100%;

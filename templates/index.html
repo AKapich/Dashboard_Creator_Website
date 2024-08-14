@@ -19,7 +19,7 @@
         <div class="top-bar">
             <div class="top-bar-row">
                 <img src="{{ url_for('static', filename='images/EURO2024.png') }}" alt="Euro 2024 logo" >
-                <img src="{{ url_for('static', filename='images/dashboard_creator.png') }}" alt="App name">
+                <a href="https://aleks-kapich.pl"><img src="{{ url_for('static', filename='images/dashboard_creator.png') }}" alt="App name"></a>
                 <img src="{{ url_for('static', filename='images/sb_icon.png') }}" alt="StatsBomb Icon">
             </div>
             <div class="top-bar-row">
@@ -51,6 +51,17 @@
 
         <!-- Main content area for images -->
         <div class="main-content">
+            Within the top-bar menu You can choose the match & Your desired dashboard size. By clicking on the empty
+            panes below, You will be able to choose the plot to be displayed in that particular place on the dashboard.
+            When Your design process is over, download Your dashboard!
+            <div class="dashboard-header-container">
+                <div id="dashboard-header">
+                    <img id="header-image" alt="Dashboard Header">
+                </div>
+            </div>
+            <!-- <div id="dashboard-header">
+                <img id="header-image" alt="Dashboard Header" style="width:100%; max-width:600px;">
+            </div> -->
             
             <!-- Grid of panes -->
             <div class="pane-grid" id="pane-grid">

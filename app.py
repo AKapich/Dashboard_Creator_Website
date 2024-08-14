@@ -37,6 +37,54 @@ def index():
     )
 
 
+@app.route('/create_dashboard_header', methods=['POST'])
+def create_dashboard_header():
+    with threading.Lock():
+        try:
+            data = request.json
+            match_id = data.get('match_id')
+            if not match_id:
+                    raise ValueError("No match ID provided")
+            match_data = matches[matches['match_id']==int(match_id)].iloc[0]
+            home_team, away_team = match_data['home_team'], match_data['away_team']
+            home_score, away_score = match_data['home_score'], match_data['away_score']
+
+            img = io.BytesIO()
+            fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(16, 6), tight_layout=True)
+            fig.set_facecolor('#0e1117')
+            for ax in axes:
+                ax.patch.set_facecolor('#0e1117')
+                ax.axis('off')
+            axes[0].imshow(Image.open(f'./static/images/federations/{home_team}.png'))
+            axes[2].imshow(Image.open(f'./static/images/federations/{away_team}.png'))
+
+            home_team_text = axes[1].text(0.2, 0.4, home_team, fontsize=30, ha='center', fontfamily="Monospace", fontweight='bold', color='white')
+            home_team_text.set_bbox(dict(facecolor=country_colors[home_team], alpha=0.5, edgecolor='white', boxstyle='round'))
+            away_team_text = axes[1].text(0.8, 0.4, away_team, fontsize=30, ha='center', fontfamily="Monospace", fontweight='bold', color='white')
+            away_team_text.set_bbox(dict(facecolor=country_colors[away_team], alpha=0.5, edgecolor='white', boxstyle='round'))
+            score_text = axes[1].text(
+                0.5,
+                0,
+                f'{home_score} - {away_score}',
+                fontsize=40,
+                ha='center',
+                fontfamily="Monospace",
+                fontweight='bold',
+                color='white'
+            )
+
+            plt.savefig(img, format='png')
+            img.seek(0)
+            plt.close()
+            img_data = base64.b64encode(img.getvalue()).decode('utf-8')
+            return jsonify({'img_data': img_data})
+        except Exception as e:
+            print(f"Error occurred: {e}")
+            return jsonify({'error': 'An error occurred while generating the plot'}), 500
+
+
+
+
 @app.route('/generate_plot', methods=['POST'])
 def generate_plot():
     with threading.Lock():
