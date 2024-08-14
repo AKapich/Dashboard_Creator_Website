@@ -6,28 +6,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const matchSelect = document.getElementById('match-select');
     const plotSelect = document.getElementById('plot-select');
     let activePane = null;
-    let plotTypes = {}; // Object to store plot types for each pane
+    let plotTypes = {}; // to store plot types for each pane
 
 
     function createGrid(rows) {
-        const currentPanes = {}; // Store existing panes' content
+        const currentPanes = {};
 
-        // Store current pane content and plot types
         document.querySelectorAll('.pane').forEach(pane => {
             const paneId = pane.getAttribute('data-id');
             currentPanes[paneId] = pane.innerHTML;
             plotTypes[paneId] = plotTypes[paneId] || null;
         });
 
-        paneGrid.innerHTML = ''; // Clear existing panes
-        const totalPanes = rows * 3; // 3 columns
+        paneGrid.innerHTML = '';
+        const totalPanes = rows * 3;
         for (let i = 1; i <= totalPanes; i++) {
             const pane = document.createElement('div');
             pane.className = 'pane';
-            const column = (i - 1) % 3 + 1; // Determine the column (1, 2, or 3)
+            const column = (i - 1) % 3 + 1;
             const paneId = `pane${i}`;
             pane.setAttribute('data-id', paneId);
-            pane.setAttribute('data-column', column); // Set the column attribute
+            pane.setAttribute('data-column', column);
             
             // Restore the content if it exists
             if (currentPanes[paneId]) {
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             pane.addEventListener('click', function() {
                 activePane = this;
-                showPlotOptions(column); // Show options based on the column
+                showPlotOptions(column);
                 plotModal.style.display = 'block';
             });
 
@@ -67,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function clearPlots() {
         const panes = document.querySelectorAll('.pane');
         panes.forEach(pane => {
-            pane.innerHTML = ''; // Clear the content of each pane
+            pane.innerHTML = '';
         });
     }
 
@@ -77,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
             let plotType = plotSelect.value;
             let paneId = activePane.getAttribute('data-id');
             plotTypes[paneId] = plotType; // Save the plot type for the active pane
-            let matchId = matchSelect.value; // Get the selected match ID
-            let column = activePane.getAttribute('data-column'); // Get the column number
+            let matchId = matchSelect.value;
+            let column = activePane.getAttribute('data-column');
 
             fetch('/generate_plot', {
                 method: 'POST',
@@ -123,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     matchSelect.addEventListener('change', function() {
-        clearPlots(); // Clear all plots when the match changes
+        clearPlots(); 
         loadDashboardHeader();
     });
 
