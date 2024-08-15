@@ -31,12 +31,21 @@
                 </select>
                 <br><br>
                 <button id="save-dashboard">Save Dashboard</button>
+
+                <div id="save-loading-spinner" class="loading-spinner hidden">
+                    <i class="fas fa-spinner fa-spin"></i> Saving dashboard...
+                </div>
+
                 <div id="plot-modal" style="display:none;">
                     <label for="plot-select">Choose a plot type:</label>
                     <select id="plot-select">
                         <!-- Options dynamically populated by JavaScript -->
                     </select>
                     <button id="generate-plot">Add Plot</button>
+                </div>
+
+                <div id="plot-loading-spinner" class="loading-spinner hidden">
+                    <i class="fas fa-spinner fa-spin"></i> Generating plot...
                 </div>
             </div>
             <div class="top-bar-row">
@@ -55,7 +64,8 @@
                     Within the top bar menu, you can choose the match & your desired dashboard size.
                     By clicking on the empty panes below, you can select the plot to
                     display in that particular place on the dashboard. When your design process is
-                    over, download your dashboard! (it may take a few seconds)
+                    over, download your dashboard! (it may take a few seconds). <br>
+                    You can erase the dashboard by simply choosing another match.
                 </p>
             </div>
             <br><hr>
@@ -69,21 +79,12 @@
             
             <!-- Grid of panes -->
             <div class="pane-grid" id="pane-grid">
-                <!-- Dynamic grid elements will be inserted here by JavaScript -->
             </div>
 
             <!-- Area to display the generated plot -->
             <div id="plot-display"></div>
         </div>
 
-        <div id="plot-loading-spinner" class="loading-spinner hidden">
-            <i class="fas fa-spinner fa-spin"></i> Generating plot...
-        </div>
-        
-        <!-- Loading Spinner for Dashboard Saving -->
-        <div id="save-loading-spinner" class="loading-spinner hidden">
-            <i class="fas fa-spinner fa-spin"></i> Saving dashboard...
-        </div>
     </div>
 </body>
 </html>

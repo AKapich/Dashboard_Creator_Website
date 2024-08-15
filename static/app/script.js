@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+
     function loadDashboardHeader() {
         let matchId = matchSelect.value;
 
@@ -130,10 +131,13 @@ document.addEventListener('DOMContentLoaded', function() {
     matchSelect.addEventListener('change', function() {
         clearPlots(); 
         loadDashboardHeader();
+        plotTypes = {}
     });
+
 
     // Initialize grid with default value (2 rows)
     createGrid(rowSlider.value);
+
 
     document.getElementById('save-dashboard').addEventListener('click', function() {
         let matchId = matchSelect.value;
@@ -182,5 +186,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-
 });

@@ -50,7 +50,7 @@ def create_dashboard_header():
             home_score, away_score = match_data['home_score'], match_data['away_score']
 
             img = io.BytesIO()
-            fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(23, 6))
+            fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(23, 8))
             fig.set_facecolor('#0e1117')
             for ax in axes:
                 ax.patch.set_facecolor('#0e1117')
