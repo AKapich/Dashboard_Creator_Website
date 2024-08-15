@@ -158,17 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    const header = document.getElementById('toggle-header');
-    const content = document.getElementById('toggle-content');
-    
-    header.addEventListener('click', () => {
-        if (content.classList.contains('hidden')) {
-            content.classList.remove('hidden');
-        } else {
-            content.classList.add('hidden');
-        }
-    });
     
 
 });
