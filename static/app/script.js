@@ -79,6 +79,8 @@ document.addEventListener('DOMContentLoaded', function() {
             let matchId = matchSelect.value;
             let column = activePane.getAttribute('data-column');
 
+            document.getElementById('plot-loading-spinner').classList.add('visible');
+
             fetch('/generate_plot', {
                 method: 'POST',
                 headers: {
@@ -90,6 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 activePane.innerHTML = '<img src="data:image/png;base64,' + data.img_data + '" alt="Selected Plot">';
                 plotModal.style.display = 'none';
+            })
+            .finally(() => {
+                // Hide loading spinner
+                document.getElementById('plot-loading-spinner').classList.remove('visible');
             });
         }
     };
@@ -140,6 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const column = pane.getAttribute('data-column');
             dashboardData.push({ paneId, plotType, column });
         });
+
+        document.getElementById('save-loading-spinner').classList.add('visible');
     
         fetch('/save_dashboard', {
             method: 'POST',
@@ -156,6 +164,10 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 alert('Failed to save the dashboard.');
             }
+        })
+        .finally(() => {
+            // Hide loading spinner
+            document.getElementById('save-loading-spinner').classList.remove('visible');
         });
     });
 

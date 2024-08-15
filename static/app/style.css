@@ -333,6 +333,33 @@ body {
     border-radius: 8px;
 }
 
+
+.loading-spinner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+.loading-spinner i {
+    margin-right: 10px;
+}
+
+.loading-spinner.hidden {
+    display: none;
+}
+
+.loading-spinner.visible {
+    display: block;
+}
+
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .pane-grid {
