@@ -22,7 +22,7 @@ body {
     width: 100%;
     background-color: #1a1a1a;
     color: white;
-    padding: 1vh 2vw; /* Use viewport units for padding */
+    padding: 1vh 2vw;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     display: flex;
@@ -31,15 +31,15 @@ body {
     overflow: auto;
     justify-content: center;
     align-items: center;
-    height: 30vh; /* Adjust based on your needs */
-    font-size: 1.5vw; /* Font size relative to viewport width */
+    height: 30vh;
+    font-size: 1.5vw;
 }
 
 .top-bar-row {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1vh; /* Margin relative to viewport height */
+    margin-bottom: 1vh;
 }
 
 .top-bar-row:first-child {
@@ -48,25 +48,27 @@ body {
 
 .top-bar img {
     height: auto;
-    max-height: 8vh; /* Adjust as needed */
-    margin: 0 1vw; /* Margin relative to viewport width */
+    max-height: 8vh;
+    margin: 0 1vw;
 }
 
 .top-bar select, 
 .top-bar input[type="range"], 
 .top-bar button {
-    margin-right: 1vw; /* Margin relative to viewport width */
-    font-size: 1em; /* Font size relative to the .top-bar's font size */
-    padding: 0.5vh 1vw; /* Padding relative to viewport height and width */
+    margin-right: 1vw;
+    font-size: 1em; 
+    padding: 0.5vh 1vw;
 }
 
 .top-bar input[type="range"] {
-    width: 20vw; /* Width relative to viewport width */
+    width: 20vw;
 }
 
 .top-bar button {
-    margin-left: 1vw; /* Add space between buttons, relative to viewport width */
+    margin-left: 1vw; 
 }
+
+.top-bar 
 
 .top-bar #plot-modal {
     display: flex;
