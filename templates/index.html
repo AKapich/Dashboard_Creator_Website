@@ -29,14 +29,7 @@
                         <option value="{{ value }}" {% if loop.index == 2 %}selected{% endif %}>{{ key }}</option>
                     {% endfor %}
                 </select>
-            </div>
-            <div class="top-bar-row">
-                <div id="monospace-text">Choose amount of rows:</div> 
-                <label for="row-slider"></label>
-                <input type="range" id="row-slider" min="2" max="5" value="2">
-                <span id="row-count">2</span>
-            </div>
-            <div class="top-bar-row">
+                <br><br>
                 <button id="save-dashboard">Save Dashboard</button>
                 <div id="plot-modal" style="display:none;">
                     <label for="plot-select">Choose a plot type:</label>
@@ -45,6 +38,12 @@
                     </select>
                     <button id="generate-plot">Add Plot</button>
                 </div>
+            </div>
+            <div class="top-bar-row">
+                <div id="monospace-text">Choose amount of rows:</div> 
+                <label for="row-slider"></label>
+                <input type="range" id="row-slider" min="2" max="5" value="2">
+                <span id="row-count">2</span>
             </div>
 
         </div>
