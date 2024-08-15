@@ -31,7 +31,7 @@ body {
     overflow: auto;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 33vh;
 }
 
 .top-bar-row {
@@ -49,7 +49,7 @@ body {
 
 .top-bar img {
     height: auto;
-    max-height: 10vh; 
+    max-height: 8vh; 
     margin: 0 20px;
 }
 
