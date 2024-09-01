@@ -1,6 +1,5 @@
 from statsbombpy import sb
 from mplsoccer.pitch import Pitch, VerticalPitch
-from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.patches as pat
